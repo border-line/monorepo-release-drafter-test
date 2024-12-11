@@ -5,55 +5,31 @@ on:
     types: [closed]
 
 jobs:
-  update-test-project1-release-draft:
+  update-release-draft-sementic-version:
     permissions:
       # write permission is required to create a github release
       contents: write
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true && github.base_ref == 'main' && contains(github.event.pull_request.labels.*.name, 'test-project1')
+    if: github.event.pull_request.merged == true && github.base_ref == 'main'
+    strategy:
+      matrix:
+        project:
+          - name: test-project1
+            config: release-drafter/release-drafter-test-project1.yml
+          - name: test-project2
+            config: release-drafter/release-drafter-test-project2.yml
+          - name: test-project3
+            config: release-drafter/release-drafter-test-project3.yml
+          - name: test-project4
+            config: release-drafter/release-drafter-test-project4.yml
     steps:
+      - name: Check if label matches project
+        if: contains(github.event.pull_request.labels.*.name, matrix.project.name)
+        run: |
+          echo "Label matches project: ${{ matrix.project.name }}"
       - name: Release drafter
         uses: release-drafter/release-drafter@v6
         with:
-          config-name: release-drafter/release-drafter-test-project1.yml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  update-test-project2-release-draft:
-    permissions:
-      # write permission is required to create a github release
-      contents: write
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true && github.base_ref == 'main' && contains(github.event.pull_request.labels.*.name, 'test-project2')
-    steps:
-      - name: Release drafter
-        uses: release-drafter/release-drafter@v6
-        with:
-          config-name: release-drafter/release-drafter-test-project2.yml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  update-test-project3-release-draft:
-    permissions:
-      # write permission is required to create a github release
-      contents: write
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true && github.base_ref == 'main' && contains(github.event.pull_request.labels.*.name, 'test-project3')
-    steps:
-      - name: Release drafter
-        uses: release-drafter/release-drafter@v6
-        with:
-          config-name: release-drafter/release-drafter-test-project3.yml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  pdate-test-project3-release-draft:
-    permissions:
-      # write permission is required to create a github release
-      contents: write
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true && github.base_ref == 'main' && contains(github.event.pull_request.labels.*.name, 'test-project4')
-    steps:
-      - name: Release drafter
-        uses: release-drafter/release-drafter@v6
-        with:
-          config-name: release-drafter/release-drafter-test-project4.yml
+          config-name: ${{ matrix.project.config }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
