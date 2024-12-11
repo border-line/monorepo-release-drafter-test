@@ -9,3 +9,7 @@ test-project2:
 test-project3:
 - changed-files:
   - any-glob-to-any-file: 'services/test-project3/**/*'
+
+test-project4:
+- changed-files:
+    - any-glob-to-any-file: 'services/test-project4/**/*'
