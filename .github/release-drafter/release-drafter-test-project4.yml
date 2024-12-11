@@ -1,6 +1,6 @@
 name-template: "test-project4: v$RESOLVED_VERSION"
 tag-template: "test-project4/v$RESOLVED_VERSION"
-tag-prefix: test-project3/v
+tag-prefix: test-project4/v
 template: |
   ## What’s Changed
   

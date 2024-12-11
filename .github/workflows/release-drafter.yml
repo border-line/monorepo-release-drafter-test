@@ -23,11 +23,8 @@ jobs:
           - name: test-project4
             config: release-drafter/release-drafter-test-project4.yml
     steps:
-      - name: Check if label matches project
-        if: contains(github.event.pull_request.labels.*.name, matrix.project.name)
-        run: |
-          echo "Label matches project: ${{ matrix.project.name }}"
       - name: Release drafter
+        if: contains(github.event.pull_request.labels.*.name, matrix.project.name)
         uses: release-drafter/release-drafter@v6
         with:
           config-name: ${{ matrix.project.config }}
