@@ -4,8 +4,8 @@ test-project1:
 
 test-project2:
 - changed-files:
-  - any-glob-to-any-file: 'services/test-project1/**/*'
+  - any-glob-to-any-file: 'services/test-project2/**/*'
 
 test-project3:
 - changed-files:
-  - any-glob-to-any-file: 'services/test-project1/**/*'
+  - any-glob-to-any-file: 'services/test-project3/**/*'
