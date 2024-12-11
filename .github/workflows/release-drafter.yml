@@ -24,6 +24,8 @@ jobs:
             config: release-drafter/release-drafter-test-project4.yml
           - name: test-project5
             config: release-drafter/release-drafter-test-project5.yml
+          - name: test-project6
+            config: release-drafter/release-drafter-test-project6.yml
     steps:
       - name: Release drafter
         if: contains(github.event.pull_request.labels.*.name, matrix.project.name)
