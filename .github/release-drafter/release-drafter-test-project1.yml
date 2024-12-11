@@ -1,0 +1,22 @@
+name-template: "test-project1: v$RESOLVED_VERSION"
+tag-template: "test-project1/v$RESOLVED_VERSION"
+tag-prefix: test-project1/v
+template: |
+  ## What’s Changed
+  
+  $CHANGES
+sort-by: "title"
+include-labels: # PR의 라벨에 dekstop이 포함된 경우 릴리즈 노트에 포함
+  - "test-project1"
+version-resolver:
+  major:
+    labels:
+      - 'major'
+  minor:
+    labels:
+      - 'minor'
+  patch:
+    labels:
+      - 'patch'
+  default: patch
+change-template: "- $TITLE @$AUTHOR (#$NUMBER)"

@@ -1,0 +1,17 @@
+name: Release Drafter
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  update-partner-member-release-draft:
+    runs-on: [self-hosted]
+    if: github.event.pull_request.merged == true && github.base_ref == 'main' && contains(github.event.pull_request.labels.*.name, 'test-project1')
+    steps:
+      - name: Release drafter
+        uses: release-drafter/release-drafter@v6
+        with:
+          config-name: release-drafter/release-drafter-test-project1.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,11 @@
+test-project1:
+- changed-files:
+  - any-glob-to-any-file: 'services/test-project1/**/*'
+
+test-project2:
+- changed-files:
+  - any-glob-to-any-file: 'services/test-project1/**/*'
+
+test-project3:
+- changed-files:
+  - any-glob-to-any-file: 'services/test-project1/**/*'
