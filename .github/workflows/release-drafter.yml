@@ -6,6 +6,9 @@ on:
 
 jobs:
   update-partner-member-release-draft:
+    permissions:
+      # write permission is required to create a github release
+      contents: write
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true && github.base_ref == 'main' && contains(github.event.pull_request.labels.*.name, 'test-project1')
     steps:
