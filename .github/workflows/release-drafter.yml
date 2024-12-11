@@ -6,7 +6,7 @@ on:
 
 jobs:
   update-partner-member-release-draft:
-    runs-on: [self-hosted]
+    runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true && github.base_ref == 'main' && contains(github.event.pull_request.labels.*.name, 'test-project1')
     steps:
       - name: Release drafter

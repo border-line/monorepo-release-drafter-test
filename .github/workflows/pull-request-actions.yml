@@ -10,7 +10,7 @@ on:
 jobs:
   Run-Pull-Request-Actions:
     name: Run Pull Request Actions 
-    runs-on: [self-hosted]
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       pull-requests: write
